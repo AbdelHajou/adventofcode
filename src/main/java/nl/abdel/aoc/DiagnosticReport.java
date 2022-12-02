@@ -35,7 +35,7 @@ public class DiagnosticReport {
     }
 
     private List<String> decodeReport(String report) {
-        return Arrays.stream(report.split("\n")).collect(Collectors.toCollection(LinkedList::new));
+        return Arrays.stream(report.split(System.lineSeparator())).collect(Collectors.toCollection(LinkedList::new));
     }
 
     private List<BitOccurences> calculateBitOccurrences(final List<String> binaryNumbers) {

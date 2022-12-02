@@ -7,7 +7,7 @@ import java.util.List;
 public class VentScanner {
 
     public int[][] scanLineSegments(String lineSegments, boolean includeDiagonalLines) {
-        String[] segments = lineSegments.split("\n");
+        String[] segments = lineSegments.split(System.lineSeparator());
         List<Line> lines = parseLines(segments);
 
         int diagramWidth = getDiagramWidth(lines);
