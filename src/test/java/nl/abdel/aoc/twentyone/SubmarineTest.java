@@ -14,7 +14,7 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-@Order(2)
+@Order(2012_2)
 class SubmarineTest {
 
     private static List<String> puzzleInput;

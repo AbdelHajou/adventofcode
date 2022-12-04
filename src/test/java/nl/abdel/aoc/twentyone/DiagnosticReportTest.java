@@ -10,7 +10,7 @@ import java.io.IOException;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-@Order(3)
+@Order(2021_3)
 class DiagnosticReportTest {
 
     private static String exampleReport;

@@ -12,7 +12,7 @@ import java.io.IOException;
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-@Order(5)
+@Order(2021_5)
 class VentScannerTest {
 
     private static String exampleInput;

@@ -11,7 +11,7 @@ import java.io.IOException;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-@Order(7)
+@Order(2021_7)
 class SubmarineFleetTest {
 
     private static final String EXAMPLE_INPUT = "16,1,2,0,4,2,7,1,2,14";

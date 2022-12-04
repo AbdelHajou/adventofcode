@@ -13,7 +13,7 @@ import java.util.stream.Stream;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-@Order(1)
+@Order(2021_1)
 class SonarSweeperTest {
 
     private final SonarSweeper sonarSweeper = new SonarSweeper();

@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-@Order(6)
+@Order(2021_6)
 class LanternFishSpawnerTest {
 
     private LanternFishSpawner spawner;

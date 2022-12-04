@@ -14,7 +14,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.fail;
 
-@Order(8)
+@Order(2021_8)
 class DigitDisplaySolverTest {
 
     private static final int[] NUMBER_OF_SEGMENTS_PER_DIGIT = {6, 2, 5, 5, 4, 5, 6, 3, 7, 6};
