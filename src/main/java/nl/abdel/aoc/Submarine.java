@@ -9,7 +9,7 @@ public class Submarine {
         this(0, 0);
     }
 
-    public Submarine(int initialPosition, int initialDepth) {
+    public Submarine(final int initialPosition, final int initialDepth) {
         this.position = initialPosition;
         this.depth = initialDepth;
     }
@@ -22,39 +22,33 @@ public class Submarine {
         return depth;
     }
 
-    public void command(String command) {
+    public void command(final String command) {
         if (command == null) {
             throw new IllegalArgumentException("Command cannot be null.");
         }
 
-        String[] commandParts = command.split(" ");
-        String direction = commandParts[0];
-        int units = Integer.parseInt(commandParts[1]);
+        final String[] commandParts = command.split(" ");
+        final String direction = commandParts[0];
+        final int units = Integer.parseInt(commandParts[1]);
 
         switch (direction) {
-            case "forward":
-                forward(units);
-                break;
-            case "down":
-                down(units);
-                break;
-            case "up":
-                up(units);
-                break;
-            default:
-                break;
+            case "forward" -> forward(units);
+            case "down" -> down(units);
+            case "up" -> up(units);
+            default -> {
+            }
         }
     }
 
-    protected void forward(int units) {
+    protected void forward(final int units) {
         position += units;
     }
 
-    protected void down(int units) {
+    protected void down(final int units) {
         depth += units;
     }
 
-    protected void up(int units) {
+    protected void up(final int units) {
         depth -= units;
     }
 }

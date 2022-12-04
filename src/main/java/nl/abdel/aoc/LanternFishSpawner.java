@@ -8,21 +8,21 @@ public class LanternFishSpawner {
     private static final int DELAY_BETWEEN_BIRTHS = 6;
     private long[] fishPerDaysLeft = new long[INITIAL_DAYS_LEFT + 1];
 
-    public void spawn(String initialState) {
+    public void spawn(final String initialState) {
         Arrays.stream(initialState.split(","))
                 .map(Integer::parseInt)
                 .forEach(timer -> fishPerDaysLeft[timer]++);
     }
 
-    public void passDays(int numberOfDays) {
+    public void passDays(final int numberOfDays) {
         for (int i = 0; i < numberOfDays; i++) {
             passDay();
         }
     }
 
     public void passDay() {
-        long[] shifted = new long[fishPerDaysLeft.length];
-        long newFishToSpawn = fishPerDaysLeft[0];
+        final long[] shifted = new long[fishPerDaysLeft.length];
+        final long newFishToSpawn = fishPerDaysLeft[0];
 
         for (int i = 0; i < fishPerDaysLeft.length ; i++) {
             if (i == 0) {
@@ -39,14 +39,16 @@ public class LanternFishSpawner {
 
     public Long getNumberOfFishSpawned() {
         long total = 0;
-        for (long numberOfFish : fishPerDaysLeft) {
+        for (final long numberOfFish : fishPerDaysLeft) {
             total += numberOfFish;
         }
         return total;
     }
 
-    public long getFishPerDaysLeft(int daysLeft) {
-        if (daysLeft >= fishPerDaysLeft.length) return 0;
+    public long getFishPerDaysLeft(final int daysLeft) {
+        if (daysLeft >= fishPerDaysLeft.length) {
+            return 0;
+        }
 
         return fishPerDaysLeft[daysLeft];
     }

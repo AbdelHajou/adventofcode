@@ -6,15 +6,15 @@ import java.util.List;
 
 public class VentScanner {
 
-    public int[][] scanLineSegments(String lineSegments, boolean includeDiagonalLines) {
-        String[] segments = lineSegments.split(System.lineSeparator());
-        List<Line> lines = parseLines(segments);
+    public int[][] scanLineSegments(final String lineSegments, final boolean includeDiagonalLines) {
+        final String[] segments = lineSegments.split(System.lineSeparator());
+        final List<Line> lines = parseLines(segments);
 
-        int diagramWidth = getDiagramWidth(lines);
-        int diagramHeight = getDiagramHeight(lines);
+        final int diagramWidth = getDiagramWidth(lines);
+        final int diagramHeight = getDiagramHeight(lines);
 
-        int[][] diagram = new int[diagramHeight][diagramWidth];
-        for (Line line : lines) {
+        final int[][] diagram = new int[diagramHeight][diagramWidth];
+        for (final Line line : lines) {
             if (includeDiagonalLines || (line.x1 == line.x2 || line.y1 == line.y2)) {
                 fillLine(diagram, line);
             }
@@ -23,7 +23,7 @@ public class VentScanner {
         return diagram;
     }
 
-    private void fillLine(int[][] diagram, Line line) {
+    private void fillLine(final int[][] diagram, final Line line) {
         int x = line.x1;
         int y = line.y1;
         while (x != line.x2 || y != line.y2) {
@@ -34,23 +34,23 @@ public class VentScanner {
         diagram[y][x]++;
     }
 
-    private List<Line> parseLines(String[] segments) {
-        List<Line> lines = new LinkedList<>();
-        for (String segment : segments) {
-            String[] points = segment.split(" -> ");
-            String[] point1 = points[0].split(",");
-            String[] point2 = points[1].split(",");
+    private List<Line> parseLines(final String[] segments) {
+        final List<Line> lines = new LinkedList<>();
+        for (final String segment : segments) {
+            final String[] points = segment.split(" -> ");
+            final String[] point1 = points[0].split(",");
+            final String[] point2 = points[1].split(",");
             lines.add(new Line(Integer.parseInt(point1[0]), Integer.parseInt(point1[1]), Integer.parseInt(point2[0]), Integer.parseInt(point2[1])));
         }
         return lines;
     }
 
-    private int getDiagramWidth(List<Line> lines) {
-        return lines.stream().max(Comparator.comparingInt(line -> line.maxX())).get().maxX() + 1;
+    private int getDiagramWidth(final List<Line> lines) {
+        return lines.stream().max(Comparator.comparingInt(Line::maxX)).get().maxX() + 1;
     }
 
-    private int getDiagramHeight(List<Line> lines) {
-        return lines.stream().max(Comparator.comparingInt(line -> line.maxY())).get().maxY() + 1;
+    private int getDiagramHeight(final List<Line> lines) {
+        return lines.stream().max(Comparator.comparingInt(Line::maxY)).get().maxY() + 1;
     }
 
     private record Line(int x1, int y1, int x2, int y2) {

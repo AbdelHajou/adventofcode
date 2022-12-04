@@ -58,19 +58,19 @@ class VentScannerTest {
 
     @Test
     void shouldScanHorizontalLineSegment() {
-        var expectedDiagram = new int[][]{
+        final var expectedDiagram = new int[][]{
                 {0, 0, 0, 0, 0, 1, 1, 1, 1}
         };
-        var lineSegment = "5,0 -> 8,0";
+        final var lineSegment = "5,0 -> 8,0";
 
-        var actualDiagram = ventScanner.scanLineSegments(lineSegment, false);
+        final var actualDiagram = ventScanner.scanLineSegments(lineSegment, false);
 
         assertArrayEquals(expectedDiagram, actualDiagram);
     }
 
     @Test
     void shouldScanVerticalLineSegment() {
-        var expectedDiagram = new int[][]{
+        final var expectedDiagram = new int[][]{
                 {0},
                 {1},
                 {1},
@@ -78,26 +78,26 @@ class VentScannerTest {
                 {1},
                 {1}
         };
-        var lineSegment = "0,1 -> 0,5";
+        final var lineSegment = "0,1 -> 0,5";
 
-        var actualDiagram = ventScanner.scanLineSegments(lineSegment, false);
+        final var actualDiagram = ventScanner.scanLineSegments(lineSegment, false);
 
         assertArrayEquals(expectedDiagram, actualDiagram);
     }
 
     @Test
     void shouldSolveExampleDiagram() {
-        var actualDiagram = ventScanner.scanLineSegments(exampleInput, false);
+        final var actualDiagram = ventScanner.scanLineSegments(exampleInput, false);
 
         assertArrayEquals(firstExampleDiagram, actualDiagram);
     }
 
     @Test
     void shouldSolvePuzzleOne() {
-        var expectedNumberOfOverlappingPoints = 6548;
+        final var expectedNumberOfOverlappingPoints = 6548;
 
-        var actualDiagram = ventScanner.scanLineSegments(puzzleInput, false);
-        var actualNumberOfOverlappingPoints = findNumberOfOverlappingPoints(actualDiagram);
+        final var actualDiagram = ventScanner.scanLineSegments(puzzleInput, false);
+        final var actualNumberOfOverlappingPoints = findNumberOfOverlappingPoints(actualDiagram);
 
         assertEquals(expectedNumberOfOverlappingPoints, actualNumberOfOverlappingPoints);
         System.out.println("Day five part one solution: " + expectedNumberOfOverlappingPoints);
@@ -105,27 +105,27 @@ class VentScannerTest {
 
     @Test
     void shouldScanDiagonalLines() {
-        var actualDiagram = ventScanner.scanLineSegments(exampleInput, true);
+        final var actualDiagram = ventScanner.scanLineSegments(exampleInput, true);
 
         assertArrayEquals(secondExampleDiagram, actualDiagram);
     }
 
     @Test
     void shouldSolvePuzzleTwo() {
-        var expectedNumberOfOverlappingPoints = 19663;
+        final var expectedNumberOfOverlappingPoints = 19663;
 
-        var actualDiagram = ventScanner.scanLineSegments(puzzleInput, true);
-        var actualNumberOfOverlappingPoints = findNumberOfOverlappingPoints(actualDiagram);
+        final var actualDiagram = ventScanner.scanLineSegments(puzzleInput, true);
+        final var actualNumberOfOverlappingPoints = findNumberOfOverlappingPoints(actualDiagram);
 
         assertEquals(expectedNumberOfOverlappingPoints, actualNumberOfOverlappingPoints);
         System.out.println("Day five part two solution: " + expectedNumberOfOverlappingPoints);
     }
 
-    private int findNumberOfOverlappingPoints(int[][] diagram) {
+    private int findNumberOfOverlappingPoints(final int[][] diagram) {
         int numberOfOverlappingPoints = 0;
 
-        for (int[] row : diagram) {
-            for (int point : row) {
+        for (final int[] row : diagram) {
+            for (final int point : row) {
                 if (point >= 2) {
                     numberOfOverlappingPoints++;
                 }

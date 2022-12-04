@@ -7,14 +7,14 @@ import java.util.List;
 public class SubmarineFleet {
 
     record CrabSubmarine(int position, EngineType engineType) {
-        int calculateFuelTowardsPosition(int targetPosition) {
+        int calculateFuelTowardsPosition(final int targetPosition) {
             return switch (engineType) {
                 case OLD -> increasingFuel(Math.abs(targetPosition - position));
                 case IMPROVED -> Math.abs(targetPosition - position);
             };
         }
 
-        private int increasingFuel(int steps) {
+        private int increasingFuel(final int steps) {
             int totalFuel = 0;
             int fuelExpenditure = 1;
             for (int i = 0; i < steps; i++) {
@@ -26,7 +26,7 @@ public class SubmarineFleet {
 
     private final List<CrabSubmarine> submarines = new ArrayList<>();
 
-    public void spawnSubmarines(String horizontalPositions, EngineType engineType) {
+    public void spawnSubmarines(final String horizontalPositions, final EngineType engineType) {
         submarines.addAll(
                 Arrays.stream(horizontalPositions.split(","))
                         .map(Integer::parseInt)
@@ -36,12 +36,12 @@ public class SubmarineFleet {
     }
 
     public Integer findIdealPosition() {
-        int maxSubmarinePosition = submarines.stream().mapToInt(crab -> crab.position).max().getAsInt();
+        final int maxSubmarinePosition = submarines.stream().mapToInt(crab -> crab.position).max().getAsInt();
 
         Integer cheapestPosition = null;
         int cheapestTotalFuel = 0;
         for (int pos = 0; pos <= maxSubmarinePosition; pos++) {
-            int totalFuelTowardsPosition = calculateTotalFuelSpentTowardsPosition(pos);
+            final int totalFuelTowardsPosition = calculateTotalFuelSpentTowardsPosition(pos);
             if (cheapestPosition == null || totalFuelTowardsPosition < cheapestTotalFuel) {
                 cheapestPosition = pos;
                 cheapestTotalFuel = totalFuelTowardsPosition;
@@ -50,9 +50,9 @@ public class SubmarineFleet {
         return cheapestPosition;
     }
 
-    public int calculateTotalFuelSpentTowardsPosition(int targetPosition) {
+    public int calculateTotalFuelSpentTowardsPosition(final int targetPosition) {
         int totalFuel = 0;
-        for (CrabSubmarine crabSubmarine : submarines) {
+        for (final CrabSubmarine crabSubmarine : submarines) {
             totalFuel += crabSubmarine.calculateFuelTowardsPosition(targetPosition);
         }
         return totalFuel;

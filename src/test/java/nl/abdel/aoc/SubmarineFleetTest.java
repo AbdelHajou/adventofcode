@@ -29,29 +29,29 @@ class SubmarineFleetTest {
     void shouldFindIdealPosition() {
         fleet.spawnSubmarines(EXAMPLE_INPUT, EngineType.IMPROVED);
 
-        var actualIdealPosition = fleet.findIdealPosition();
+        final var actualIdealPosition = fleet.findIdealPosition();
 
         assertEquals(EXAMPLE_IDEAL_POSITION_WITH_NEW_ENGINES, actualIdealPosition);
     }
 
     @Test
     void shouldCalculateTotalFuel() {
-        var expectedTotalFuel = 37;
+        final var expectedTotalFuel = 37;
         fleet.spawnSubmarines(EXAMPLE_INPUT, EngineType.IMPROVED);
 
-        var actualTotalFuel = fleet.calculateTotalFuelSpentTowardsPosition(EXAMPLE_IDEAL_POSITION_WITH_NEW_ENGINES);
+        final var actualTotalFuel = fleet.calculateTotalFuelSpentTowardsPosition(EXAMPLE_IDEAL_POSITION_WITH_NEW_ENGINES);
 
         assertEquals(expectedTotalFuel, actualTotalFuel);
     }
 
     @Test
     void shouldSolvePuzzleOne() {
-        var expectedIdealPosition = 298;
-        var expectedTotalFuel = 356958;
+        final var expectedIdealPosition = 298;
+        final var expectedTotalFuel = 356958;
         fleet.spawnSubmarines(puzzleInput, EngineType.IMPROVED);
 
-        var actualIdealPosition = fleet.findIdealPosition();
-        var actualTotalFuel = fleet.calculateTotalFuelSpentTowardsPosition(actualIdealPosition);
+        final var actualIdealPosition = fleet.findIdealPosition();
+        final var actualTotalFuel = fleet.calculateTotalFuelSpentTowardsPosition(actualIdealPosition);
 
         assertEquals(expectedIdealPosition, actualIdealPosition);
         assertEquals(expectedTotalFuel, actualTotalFuel);
@@ -62,29 +62,29 @@ class SubmarineFleetTest {
     void shouldFindIdealPositionWithOldEngines() {
         fleet.spawnSubmarines(EXAMPLE_INPUT, EngineType.OLD);
 
-        var actualIdealPosition = fleet.findIdealPosition();
+        final var actualIdealPosition = fleet.findIdealPosition();
 
         assertEquals(EXAMPLE_IDEAL_POSITION_WITH_OLD_ENGINES, actualIdealPosition);
     }
 
     @Test
     void shouldCalculateTotalFuelWithOldEngines() {
-        var expectedTotalFuel = 168;
+        final var expectedTotalFuel = 168;
         fleet.spawnSubmarines(EXAMPLE_INPUT, EngineType.OLD);
 
-        var actualTotalFuel = fleet.calculateTotalFuelSpentTowardsPosition(EXAMPLE_IDEAL_POSITION_WITH_OLD_ENGINES);
+        final var actualTotalFuel = fleet.calculateTotalFuelSpentTowardsPosition(EXAMPLE_IDEAL_POSITION_WITH_OLD_ENGINES);
 
         assertEquals(expectedTotalFuel, actualTotalFuel);
     }
 
     @Test
     void shouldSolvePuzzleTwo() {
-        var expectedIdealPosition = 464;
-        var expectedTotalFuel = 105461913;
+        final var expectedIdealPosition = 464;
+        final var expectedTotalFuel = 105461913;
         fleet.spawnSubmarines(puzzleInput, EngineType.OLD);
 
-        var actualIdealPosition = fleet.findIdealPosition();
-        var actualTotalFuel = fleet.calculateTotalFuelSpentTowardsPosition(actualIdealPosition);
+        final var actualIdealPosition = fleet.findIdealPosition();
+        final var actualTotalFuel = fleet.calculateTotalFuelSpentTowardsPosition(actualIdealPosition);
 
         assertEquals(expectedIdealPosition, actualIdealPosition);
         assertEquals(expectedTotalFuel, actualTotalFuel);

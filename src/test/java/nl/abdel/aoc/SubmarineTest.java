@@ -34,7 +34,7 @@ class SubmarineTest {
 
         @Test
         void shouldMoveForwardByXUnits() {
-            var expectedPosition = 5;
+            final var expectedPosition = 5;
 
             defaultSubmarine.command("forward 5");
 
@@ -43,7 +43,7 @@ class SubmarineTest {
 
         @Test
         void shouldMoveDownByXUnits() {
-            var expectedDepth = 5;
+            final var expectedDepth = 5;
 
             defaultSubmarine.command("down 5");
 
@@ -52,8 +52,8 @@ class SubmarineTest {
 
         @Test
         void shouldMoveUpByXUnits() {
-            var submarineAtDepth5 = new Submarine(0, 5);
-            var expectedDepth = 2;
+            final var submarineAtDepth5 = new Submarine(0, 5);
+            final var expectedDepth = 2;
 
             submarineAtDepth5.command("up 3");
 
@@ -62,8 +62,8 @@ class SubmarineTest {
 
         @Test
         void shouldEndUpAtPosition15AndDepth10() {
-            var expectedPosition = 15;
-            var expectedDepth = 10;
+            final var expectedPosition = 15;
+            final var expectedDepth = 10;
 
             defaultSubmarine.command("forward 5");
             defaultSubmarine.command("down 5");
@@ -78,24 +78,24 @@ class SubmarineTest {
 
         @Test
         void shouldSolvePuzzleOne() {
-            var expectedPosition = 2050;
-            var expectedDepth = 826;
-            var expectedProduct = expectedPosition * expectedDepth;
+            final var expectedPosition = 2050;
+            final var expectedDepth = 826;
+            final var expectedProduct = expectedPosition * expectedDepth;
 
-            for (String command : puzzleInput) {
+            for (final String command : puzzleInput) {
                 defaultSubmarine.command(command);
             }
 
             assertEquals(expectedPosition, defaultSubmarine.getPosition());
             assertEquals(expectedDepth, defaultSubmarine.getDepth());
-            var actualProduct = defaultSubmarine.getPosition() * defaultSubmarine.getDepth();
+            final var actualProduct = defaultSubmarine.getPosition() * defaultSubmarine.getDepth();
             assertEquals(expectedProduct, actualProduct);
             System.out.println("Day two part one solution: " + actualProduct);
         }
 
         @Test
         void shouldHandleNullCorrectly() {
-            var expectedException = IllegalArgumentException.class;
+            final var expectedException = IllegalArgumentException.class;
 
             assertThrows(expectedException, () -> {
                 defaultSubmarine.command(null);
@@ -120,7 +120,7 @@ class SubmarineTest {
 
         @Test
         void downIncreasesAimByXUnits() {
-            var expectedAim = 5;
+            final var expectedAim = 5;
 
             aimingSubmarine.command("down 5");
 
@@ -129,8 +129,8 @@ class SubmarineTest {
 
         @Test
         void upIncreasesAimByXUnits() {
-            var aimingSubmarineWithAim5 = new AimingSubmarine(0, 0, 5);
-            var expectedAim = 2;
+            final var aimingSubmarineWithAim5 = new AimingSubmarine(0, 0, 5);
+            final var expectedAim = 2;
 
             aimingSubmarineWithAim5.command("up 3");
 
@@ -139,9 +139,9 @@ class SubmarineTest {
 
         @Test
         void forwardIncreasesPositionAndDepth() {
-            var expectedPosition = 13;
-            var expectedDepth = 40;
-            var expectedAim = 5;
+            final var expectedPosition = 13;
+            final var expectedDepth = 40;
+            final var expectedAim = 5;
 
             aimingSubmarine.command("forward 5");
             aimingSubmarine.command("down 5");
@@ -154,8 +154,8 @@ class SubmarineTest {
 
         @Test
         void shouldEndUpAtPosition15AndDepth60() {
-            var expectedPosition = 15;
-            var expectedDepth = 60;
+            final var expectedPosition = 15;
+            final var expectedDepth = 60;
 
             aimingSubmarine.command("forward 5");
             aimingSubmarine.command("down 5");
@@ -170,19 +170,19 @@ class SubmarineTest {
 
         @Test
         void shouldSolvePuzzleTwo() {
-            var expectedPosition = 2050;
-            var expectedDepth = 906321;
-            var expectedAim = 826;
-            var expectedProduct = expectedPosition * expectedDepth;
+            final var expectedPosition = 2050;
+            final var expectedDepth = 906321;
+            final var expectedAim = 826;
+            final var expectedProduct = expectedPosition * expectedDepth;
 
-            for (String command : puzzleInput) {
+            for (final String command : puzzleInput) {
                 aimingSubmarine.command(command);
             }
 
             assertEquals(expectedPosition, aimingSubmarine.getPosition());
             assertEquals(expectedDepth, aimingSubmarine.getDepth());
             assertEquals(expectedAim, aimingSubmarine.getAim());
-            var actualProduct = aimingSubmarine.getPosition() * aimingSubmarine.getDepth();
+            final var actualProduct = aimingSubmarine.getPosition() * aimingSubmarine.getDepth();
             assertEquals(expectedProduct, actualProduct);
             System.out.println("Day two part two solution: " + actualProduct);
         }

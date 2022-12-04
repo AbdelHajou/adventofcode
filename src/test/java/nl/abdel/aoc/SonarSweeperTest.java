@@ -25,8 +25,8 @@ class SonarSweeperTest {
 
     @ParameterizedTest
     @MethodSource("provideMeasurementsForPuzzleOne")
-    void shouldCountCorrectNumberOfLinearIncreasements(int[] depthMeasurements, int expected) {
-        var actual = sonarSweeper.countDepthMeasurementIncrements(depthMeasurements);
+    void shouldCountCorrectNumberOfLinearIncreasements(final int[] depthMeasurements, final int expected) {
+        final var actual = sonarSweeper.countDepthMeasurementIncrements(depthMeasurements);
 
         assertEquals(expected, actual);
         if (depthMeasurements == puzzleInput) {
@@ -36,8 +36,8 @@ class SonarSweeperTest {
 
     @ParameterizedTest
     @MethodSource("provideMeasurementsForPuzzleTwo")
-    void shouldCountCorrectNumberOfSlidingWindowIncreasements(int[] depthMeasurements, int expected) {
-        var actual = sonarSweeper.countSlidingWindowIncrements(depthMeasurements, 3);
+    void shouldCountCorrectNumberOfSlidingWindowIncreasements(final int[] depthMeasurements, final int expected) {
+        final var actual = sonarSweeper.countSlidingWindowIncrements(depthMeasurements, 3);
 
         assertEquals(expected, actual);
         if (depthMeasurements == puzzleInput) {

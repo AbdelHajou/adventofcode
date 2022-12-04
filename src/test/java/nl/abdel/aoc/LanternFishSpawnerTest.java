@@ -22,7 +22,7 @@ class LanternFishSpawnerTest {
 
     @Test
     void shouldTickInternalTimer() {
-        var expectedDaysUntilNewLanternFish = 2;
+        final var expectedDaysUntilNewLanternFish = 2;
 
         spawner.spawn("3");
         spawner.passDay();
@@ -33,8 +33,8 @@ class LanternFishSpawnerTest {
 
     @Test
     void shouldResetTimerAndCreateNewFish() {
-        var expectedInitialTimerOfChild = 8;
-        var expectedNewTimerOfParent = 6;
+        final var expectedInitialTimerOfChild = 8;
+        final var expectedNewTimerOfParent = 6;
 
         spawner.spawn("0");
         spawner.passDay();
@@ -47,7 +47,7 @@ class LanternFishSpawnerTest {
     // 3,4,3,1,2
     @Test
     void shouldSpawnLanternFishFromInitialState() {
-        var expectedTimers = new int[]{3,4,3,1,2};
+        final var expectedTimers = new int[]{3,4,3,1,2};
 
         spawner.spawn(EXAMPLE_INITIAL_STATE);
 
@@ -56,8 +56,8 @@ class LanternFishSpawnerTest {
 
     @Test
     void shouldSolveExample() {
-        var expectedNumberOfFishAfter18Days = 26;
-        var expectedNumberOfFishAfter80Days = 5934;
+        final var expectedNumberOfFishAfter18Days = 26;
+        final var expectedNumberOfFishAfter80Days = 5934;
 
         spawner.spawn(EXAMPLE_INITIAL_STATE);
 
@@ -70,8 +70,8 @@ class LanternFishSpawnerTest {
 
     @Test
     void shouldSolvePuzzleOne() {
-        var expectedNumberOfFish = 359999;
-        var spawner = new LanternFishSpawner();
+        final var expectedNumberOfFish = 359999;
+        final var spawner = new LanternFishSpawner();
 
         spawner.spawn(PUZZLE_INPUT);
         spawner.passDays(80);
@@ -82,8 +82,8 @@ class LanternFishSpawnerTest {
 
     @Test
     void shouldSolvePuzzleTwo() {
-        var expectedNumberOfFish = 1631647919273L;
-        var spawner = new LanternFishSpawner();
+        final var expectedNumberOfFish = 1631647919273L;
+        final var spawner = new LanternFishSpawner();
 
         spawner.spawn(PUZZLE_INPUT);
         spawner.passDays(256);
@@ -98,9 +98,9 @@ class LanternFishSpawnerTest {
         assertEquals(0, spawner.getFishPerDaysLeft(1000));
     }
 
-    private void assertTimers(int[] expectedTimes) {
-        long[] fishPerDaysLeft = new long[9];
-        for (int expectedTime : expectedTimes) {
+    private void assertTimers(final int[] expectedTimes) {
+        final long[] fishPerDaysLeft = new long[9];
+        for (final int expectedTime : expectedTimes) {
             fishPerDaysLeft[expectedTime]++;
         }
 

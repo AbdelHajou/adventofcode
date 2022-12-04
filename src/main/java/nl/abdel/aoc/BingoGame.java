@@ -14,8 +14,8 @@ public class BingoGame {
 
     private int nextLuckyNumberIndex;
 
-    public BingoGame(String numbers) {
-        List<String> numberParts = Arrays.asList(numbers.split(DOUBLE_LINE_SEPARATOR));
+    public BingoGame(final String numbers) {
+        final List<String> numberParts = Arrays.asList(numbers.split(DOUBLE_LINE_SEPARATOR));
         this.luckyNumbers = Arrays
                 .stream(numberParts.get(0).split(","))
                 .map(Integer::parseInt)
@@ -23,18 +23,18 @@ public class BingoGame {
         createBoards(numberParts.subList(1, numberParts.size()));
     }
 
-    private void createBoards(List<String> boardStrings) {
-        for (String boardString : boardStrings) {
+    private void createBoards(final List<String> boardStrings) {
+        for (final String boardString : boardStrings) {
             boards.add(new BingoBoard(boardString));
         }
     }
 
-    public BingoBoard getBoard(int boardNumber) {
+    public BingoBoard getBoard(final int boardNumber) {
         return boards.get(boardNumber);
     }
 
     public void drawNumber() {
-        for (BingoBoard board : boards) {
+        for (final BingoBoard board : boards) {
             board.drawNumber(luckyNumbers.get(nextLuckyNumberIndex));
         }
 
@@ -50,7 +50,7 @@ public class BingoGame {
     }
 
     public Optional<BingoBoard> getWinningBoard() {
-        for (BingoBoard board : boards) {
+        for (final BingoBoard board : boards) {
             if (board.hasBingo()) {
                 return Optional.of(board);
             }
@@ -60,14 +60,14 @@ public class BingoGame {
     }
 
     public static class BingoBoard {
-        private List<List<Integer>> numbers = new LinkedList<>();
-        private List<List<Boolean>> markedNumbers = new LinkedList<>();
+        private final List<List<Integer>> numbers = new LinkedList<>();
+        private final List<List<Boolean>> markedNumbers = new LinkedList<>();
         private int lastNumberCalled;
 
-        public BingoBoard(String boardString) {
-            String[] rows = boardString.split(System.lineSeparator());
-            for (String row : rows) {
-                String[] numberStrings = row.split(" ");
+        public BingoBoard(final String boardString) {
+            final String[] rows = boardString.split(System.lineSeparator());
+            for (final String row : rows) {
+                final String[] numberStrings = row.split(" ");
                 numbers.add(
                         Arrays.stream(numberStrings)
                                 .filter(numberString -> !numberString.isEmpty())
@@ -84,12 +84,12 @@ public class BingoGame {
         }
 
         public int[][] getNumbers() {
-            int rows = numbers.size();
-            int[][] numberGrid = new int[rows][];
+            final int rows = numbers.size();
+            final int[][] numberGrid = new int[rows][];
 
             for (int row = 0; row < rows; row++) {
-                int columns = numbers.get(row).size();
-                int[] rowNumbers = new int[columns];
+                final int columns = numbers.get(row).size();
+                final int[] rowNumbers = new int[columns];
                 for (int column = 0; column < columns; column++) {
                     rowNumbers[column] = numbers.get(row).get(column);
                 }
@@ -100,12 +100,12 @@ public class BingoGame {
         }
 
         public boolean[][] getMarkedNumbers() {
-            int rows = markedNumbers.size();
-            boolean[][] markedGrid = new boolean[rows][];
+            final int rows = markedNumbers.size();
+            final boolean[][] markedGrid = new boolean[rows][];
 
             for (int row = 0; row < rows; row++) {
-                int columns = markedNumbers.get(row).size();
-                boolean[] rowNumbers = new boolean[columns];
+                final int columns = markedNumbers.get(row).size();
+                final boolean[] rowNumbers = new boolean[columns];
                 for (int column = 0; column < columns; column++) {
                     rowNumbers[column] = markedNumbers.get(row).get(column);
                 }
@@ -117,12 +117,16 @@ public class BingoGame {
 
         public boolean hasBingo() {
             for (int row = 0; row < numbers.size(); row++) {
-                boolean rowIsMarked = markedNumbers.get(row).stream().allMatch(isMarked -> isMarked == Boolean.TRUE);
-                if (rowIsMarked) return true;
+                final boolean rowIsMarked = markedNumbers.get(row).stream().allMatch(isMarked -> isMarked == Boolean.TRUE);
+                if (rowIsMarked) {
+                    return true;
+                }
                 for (int column = 0; column < numbers.get(row).size(); column++) {
-                    int finalColumn = column;
-                    boolean columnIsMarked = markedNumbers.stream().allMatch(markedRow -> markedRow.size() <= finalColumn || markedRow.get(finalColumn) == Boolean.TRUE);
-                    if (columnIsMarked) return true;
+                    final int finalColumn = column;
+                    final boolean columnIsMarked = markedNumbers.stream().allMatch(markedRow -> markedRow.size() <= finalColumn || markedRow.get(finalColumn) == Boolean.TRUE);
+                    if (columnIsMarked) {
+                        return true;
+                    }
                 }
             }
 
@@ -130,7 +134,9 @@ public class BingoGame {
         }
 
         public int getScore() {
-            if (!hasBingo()) return 0;
+            if (!hasBingo()) {
+                return 0;
+            }
 
             int sumOfUnmarkedNumbers = 0;
             for (int row = 0; row < markedNumbers.size(); row++) {
@@ -144,15 +150,15 @@ public class BingoGame {
             return sumOfUnmarkedNumbers * lastNumberCalled;
         }
 
-        private void drawNumber(Integer number) {
+        private void drawNumber(final Integer number) {
             lastNumberCalled = number;
-            for (List<Integer> row : numbers) {
+            for (final List<Integer> row : numbers) {
                 if (!row.contains(number)) {
                     continue;
                 }
 
-                int indexOfRow = numbers.indexOf(row);
-                int indexOfNumber = row.indexOf(number);
+                final int indexOfRow = numbers.indexOf(row);
+                final int indexOfNumber = row.indexOf(number);
                 markedNumbers.get(indexOfRow).set(indexOfNumber, Boolean.TRUE);
             }
         }

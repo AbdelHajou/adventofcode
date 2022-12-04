@@ -23,9 +23,9 @@ public class DiagnosticReport {
     private static final char ZERO_BIT = '0';
     private static final char ONE_BIT = '1';
 
-    public DiagnosticReport(String report) {
-        List<String> binaryNumbers = decodeReport(report);
-        List<BitOccurences> bitOccurences = calculateBitOccurrences(binaryNumbers);
+    public DiagnosticReport(final String report) {
+        final List<String> binaryNumbers = decodeReport(report);
+        final List<BitOccurences> bitOccurences = calculateBitOccurrences(binaryNumbers);
         this.gammaRate = calculateGammaRate(bitOccurences);
         this.epsilonRate = calculateEpsilonRate(bitOccurences);
         this.powerConsumption = calculatePowerConsumption();
@@ -34,14 +34,14 @@ public class DiagnosticReport {
         this.lifeSupportRating = calculateLifeSupportRating();
     }
 
-    private List<String> decodeReport(String report) {
+    private List<String> decodeReport(final String report) {
         return Arrays.stream(report.split(System.lineSeparator())).collect(Collectors.toCollection(LinkedList::new));
     }
 
     private List<BitOccurences> calculateBitOccurrences(final List<String> binaryNumbers) {
-        List<BitOccurences> bitOccurrences = new ArrayList<>();
+        final List<BitOccurences> bitOccurrences = new ArrayList<>();
 
-        for (String binaryNumber : binaryNumbers) {
+        for (final String binaryNumber : binaryNumbers) {
             for (int i = 0; i < binaryNumber.length(); i++) {
                 increaseBitOccurrencesAtIndex(bitOccurrences, binaryNumber.charAt(i), i);
             }
@@ -50,8 +50,8 @@ public class DiagnosticReport {
         return bitOccurrences;
     }
 
-    private void increaseBitOccurrencesAtIndex(List<BitOccurences> bitOccurrences, char bit, int index) {
-        Optional<BitOccurences> existing = bitOccurrences.stream().filter(bitOccurrence -> bitOccurrence.index == index && bitOccurrence.bit == bit).findFirst();
+    private void increaseBitOccurrencesAtIndex(final List<BitOccurences> bitOccurrences, final char bit, final int index) {
+        final Optional<BitOccurences> existing = bitOccurrences.stream().filter(bitOccurrence -> bitOccurrence.index == index && bitOccurrence.bit == bit).findFirst();
 
         if (existing.isPresent()) {
             existing.get().occurrences++;
@@ -60,26 +60,26 @@ public class DiagnosticReport {
         }
     }
 
-    private int calculateGammaRate(List<BitOccurences> bitOccurences) {
-        StringBuilder gammaRateBits = new StringBuilder();
-        Set<Integer> indices = bitOccurences.stream()
+    private int calculateGammaRate(final List<BitOccurences> bitOccurences) {
+        final StringBuilder gammaRateBits = new StringBuilder();
+        final Set<Integer> indices = bitOccurences.stream()
                 .map(bitOccurence -> bitOccurence.index)
                 .collect(Collectors.toCollection(LinkedHashSet::new));
-        for (int index : indices) {
-            char mostCommonBit = findCommonBitAtIndex(bitOccurences, index, BitCriteria.MOST_COMMON);
+        for (final int index : indices) {
+            final char mostCommonBit = findCommonBitAtIndex(bitOccurences, index, BitCriteria.MOST_COMMON);
             gammaRateBits.append(mostCommonBit);
         }
 
         return Integer.parseInt(gammaRateBits.toString(), 2);
     }
 
-    private int calculateEpsilonRate(List<BitOccurences> bitOccurences) {
-        StringBuilder epsilonRateBits = new StringBuilder();
-        Set<Integer> indices = bitOccurences.stream()
+    private int calculateEpsilonRate(final List<BitOccurences> bitOccurences) {
+        final StringBuilder epsilonRateBits = new StringBuilder();
+        final Set<Integer> indices = bitOccurences.stream()
                 .map(bitOccurence -> bitOccurence.index)
                 .collect(Collectors.toCollection(LinkedHashSet::new));
-        for (int index : indices) {
-            char leastCommonBit = findCommonBitAtIndex(bitOccurences, index, BitCriteria.LEAST_COMMON);
+        for (final int index : indices) {
+            final char leastCommonBit = findCommonBitAtIndex(bitOccurences, index, BitCriteria.LEAST_COMMON);
             epsilonRateBits.append(leastCommonBit);
         }
 
@@ -90,14 +90,14 @@ public class DiagnosticReport {
         return gammaRate * epsilonRate;
     }
 
-    private int calculateOxygenGeneratorRating(List<String> binaryNumbers) {
+    private int calculateOxygenGeneratorRating(final List<String> binaryNumbers) {
         return calculateOxygenGeneratorRating(new LinkedList<>(binaryNumbers), 0);
     }
 
-    private int calculateOxygenGeneratorRating(List<String> binaryNumbers, int index) {
-        char mostCommonBit = findCommonBitAtIndex(calculateBitOccurrences(binaryNumbers), index, BitCriteria.MOST_COMMON, ONE_BIT);
+    private int calculateOxygenGeneratorRating(final List<String> binaryNumbers, final int index) {
+        final char mostCommonBit = findCommonBitAtIndex(calculateBitOccurrences(binaryNumbers), index, BitCriteria.MOST_COMMON, ONE_BIT);
 
-        LinkedList<String> numbersMatchingCriteria = binaryNumbers.stream()
+        final LinkedList<String> numbersMatchingCriteria = binaryNumbers.stream()
                 .filter(binaryNumber -> binaryNumber.charAt(index) == mostCommonBit)
                 .collect(Collectors.toCollection(LinkedList::new));
 
@@ -108,14 +108,14 @@ public class DiagnosticReport {
         return calculateOxygenGeneratorRating(numbersMatchingCriteria, index + 1);
     }
 
-    private int calculateCo2ScrubberRating(List<String> binaryNumbers) {
+    private int calculateCo2ScrubberRating(final List<String> binaryNumbers) {
         return calculateCo2ScrubberRating(new LinkedList<>(binaryNumbers), 0);
     }
 
-    private int calculateCo2ScrubberRating(List<String> binaryNumbers, int index) {
-        char leastCommonBit = findCommonBitAtIndex(calculateBitOccurrences(binaryNumbers), index, BitCriteria.LEAST_COMMON, ZERO_BIT);
+    private int calculateCo2ScrubberRating(final List<String> binaryNumbers, final int index) {
+        final char leastCommonBit = findCommonBitAtIndex(calculateBitOccurrences(binaryNumbers), index, BitCriteria.LEAST_COMMON, ZERO_BIT);
 
-        LinkedList<String> numbersMatchingCriteria = binaryNumbers.stream()
+        final LinkedList<String> numbersMatchingCriteria = binaryNumbers.stream()
                 .filter(binaryNumber -> binaryNumber.charAt(index) == leastCommonBit)
                 .collect(Collectors.toCollection(LinkedList::new));
 
@@ -126,13 +126,13 @@ public class DiagnosticReport {
         return calculateCo2ScrubberRating(numbersMatchingCriteria, index + 1);
     }
 
-    private char findCommonBitAtIndex(List<BitOccurences> bitOccurences, int index, BitCriteria bitCriteria, char defaultIfEqual) {
-        long zeroBitOccurrences = bitOccurences.stream()
+    private char findCommonBitAtIndex(final List<BitOccurences> bitOccurences, final int index, final BitCriteria bitCriteria, final char defaultIfEqual) {
+        final long zeroBitOccurrences = bitOccurences.stream()
                 .filter(bitOccurence -> bitOccurence.index == index && bitOccurence.bit == ZERO_BIT)
                 .findFirst()
                 .get()
                 .occurrences;
-        long oneBitOccurrences = bitOccurences.stream()
+        final long oneBitOccurrences = bitOccurences.stream()
                 .filter(bitOccurence -> bitOccurence.index == index && bitOccurence.bit == ONE_BIT)
                 .findFirst()
                 .get()
@@ -144,8 +144,8 @@ public class DiagnosticReport {
         return findCommonBitAtIndex(bitOccurences, index, bitCriteria);
     }
 
-    private char findCommonBitAtIndex(List<BitOccurences> bitOccurences, int index, BitCriteria bitCriteria) {
-        Stream<BitOccurences> bitsAtIndex =  bitOccurences.stream()
+    private char findCommonBitAtIndex(final List<BitOccurences> bitOccurences, final int index, final BitCriteria bitCriteria) {
+        final Stream<BitOccurences> bitsAtIndex =  bitOccurences.stream()
                 .filter(bitOccurence -> bitOccurence.index == index);
 
         return switch (bitCriteria) {
@@ -187,7 +187,7 @@ public class DiagnosticReport {
         char bit;
         int occurrences;
 
-        public BitOccurences(int index, char bit, int occurrences) {
+        public BitOccurences(final int index, final char bit, final int occurrences) {
             this.index = index;
             this.bit = bit;
             this.occurrences = occurrences;

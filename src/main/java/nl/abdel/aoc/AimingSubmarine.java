@@ -8,27 +8,27 @@ public class AimingSubmarine extends Submarine {
         this(0, 0);
     }
 
-    public AimingSubmarine(int initialPosition, int initialDepth) {
+    public AimingSubmarine(final int initialPosition, final int initialDepth) {
         this(initialPosition, initialDepth, 0);
     }
 
-    public AimingSubmarine(int initialPosition, int initialDepth, int initialAim) {
+    public AimingSubmarine(final int initialPosition, final int initialDepth, final int initialAim) {
         super(initialPosition, initialDepth);
         this.aim = initialAim;
     }
 
     @Override
-    protected void down(int units) {
+    protected void down(final int units) {
         aim += units;
     }
 
     @Override
-    protected void up(int units) {
+    protected void up(final int units) {
         aim -= units;
     }
 
     @Override
-    protected void forward(int units) {
+    protected void forward(final int units) {
         position += units;
         depth += aim * units;
     }

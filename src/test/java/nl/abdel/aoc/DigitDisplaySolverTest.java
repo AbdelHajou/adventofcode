@@ -45,9 +45,9 @@ class DigitDisplaySolverTest {
 
     @Test
     void shouldOnlyContainDigitsWithFiveSegments() {
-        var numberOfSegments = 5;
+        final var numberOfSegments = 5;
 
-        var outputValue = digitDisplaySolver.solveNotes(EXAMPLE_NOTE_ENTRY);
+        final var outputValue = digitDisplaySolver.solveNotes(EXAMPLE_NOTE_ENTRY);
 
         assertNumberOfDigits(4, outputValue);
         for (int digit = 0; digit < NUMBER_OF_SEGMENTS_PER_DIGIT.length; digit++) {
@@ -59,13 +59,13 @@ class DigitDisplaySolverTest {
 
     @Test
     void shouldContainTwoUniqueFiveSegmentDigits() {
-        var numberOfSegments = 5;
+        final var numberOfSegments = 5;
 
-        var outputValue = digitDisplaySolver.solveNotes(EXAMPLE_NOTE_ENTRY);
+        final var outputValue = digitDisplaySolver.solveNotes(EXAMPLE_NOTE_ENTRY);
 
         assertNumberOfDigits(4, outputValue);
         int numberOfUniqueFiveSegmentDigits = 0;
-        for (String digit : outputValue.split("")) {
+        for (final String digit : outputValue.split("")) {
             if (NUMBER_OF_SEGMENTS_PER_DIGIT[Integer.parseInt(digit)] == numberOfSegments) {
                 numberOfUniqueFiveSegmentDigits++;
             }
@@ -76,10 +76,10 @@ class DigitDisplaySolverTest {
 
     @Test
     void shouldContain26DigitsWithUniqueNumberOfSegments() {
-        var expectedLength = 49;
-        var expectedNumberOfDigitsWithUniqueSegments = 26;
+        final var expectedLength = 49;
+        final var expectedNumberOfDigitsWithUniqueSegments = 26;
 
-        var outputValue = digitDisplaySolver.solveNotes(LARGER_EXAMPLE_NOTES);
+        final var outputValue = digitDisplaySolver.solveNotes(LARGER_EXAMPLE_NOTES);
 
         assertEquals(expectedLength, outputValue.length());
         assertNumberOfDigitsWithUniqueSegments(expectedNumberOfDigitsWithUniqueSegments, outputValue);
@@ -87,29 +87,29 @@ class DigitDisplaySolverTest {
 
     @Test
     void shouldSolvePuzzleOne() {
-        var expectedLength = 999;
-        var expectedNumberOfDigitsWithUniqueSegments = 381;
+        final var expectedLength = 999;
+        final var expectedNumberOfDigitsWithUniqueSegments = 381;
 
-        var outputValue = digitDisplaySolver.solveNotes(puzzleInput);
+        final var outputValue = digitDisplaySolver.solveNotes(puzzleInput);
 
         assertEquals(expectedLength, outputValue.length());
         assertNumberOfDigitsWithUniqueSegments(expectedNumberOfDigitsWithUniqueSegments, outputValue);
     }
 
-    private static void assertNumberOfDigits(int expectedNumberOfDigits, String outputValue) {
+    private static void assertNumberOfDigits(final int expectedNumberOfDigits, final String outputValue) {
         assertEquals(expectedNumberOfDigits, outputValue.length(), "Output value does not have 4 digits");
-        for (String digitString : outputValue.split("")) {
+        for (final String digitString : outputValue.split("")) {
             try {
                 Integer.parseInt(digitString);
-            } catch (NumberFormatException e) {
+            } catch (final NumberFormatException e) {
                 fail("Output value contains non-numeric character");
             }
         }
     }
 
-    private void assertNumberOfDigitsWithUniqueSegments(int expectedNumberOfDigitsWithUniqueSegments, String outputValue) {
+    private void assertNumberOfDigitsWithUniqueSegments(final int expectedNumberOfDigitsWithUniqueSegments, final String outputValue) {
         int actualNumberOfDigitsWithUniqueSegments = 0;
-        for (String digit : outputValue.replaceAll(" ", "").split("")) {
+        for (final String digit : outputValue.replaceAll(" ", "").split("")) {
             if (digitsWithUniqueSegments.contains(Integer.parseInt(digit))) {
                 actualNumberOfDigitsWithUniqueSegments++;
             }

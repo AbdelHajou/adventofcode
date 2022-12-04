@@ -1,7 +1,6 @@
 package nl.abdel.aoc;
 
 import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
 
@@ -38,53 +37,53 @@ class BingoGameTest {
 
     @Test
     void shouldCreateBingoBoards() {
-        var expectedNumberOfBoards = 3;
+        final var expectedNumberOfBoards = 3;
 
-        var bingoGame = new BingoGame(exampleGame);
+        final var bingoGame = new BingoGame(exampleGame);
 
-        var actualNumberOfBoards = bingoGame.getNumberOfPlayers();
+        final var actualNumberOfBoards = bingoGame.getNumberOfPlayers();
         assertEquals(expectedNumberOfBoards, actualNumberOfBoards);
     }
 
     @Test
     void shouldParseBoards() {
-        var expectedNumbers = FIRST_BOARD_NUMBERS;
+        final var expectedNumbers = FIRST_BOARD_NUMBERS;
 
-        var bingoGame = new BingoGame(exampleGame);
+        final var bingoGame = new BingoGame(exampleGame);
 
-        var actualNumbers = bingoGame.getBoard(0).getNumbers();
+        final var actualNumbers = bingoGame.getBoard(0).getNumbers();
         assertArrayEquals(expectedNumbers, actualNumbers);
     }
 
     @Test
     void shouldStartWithNoNumbersMarked() {
-        var expectedMarkedNumbers = new boolean[5][5];
+        final var expectedMarkedNumbers = new boolean[5][5];
 
-        var bingoGame = new BingoGame(exampleGame);
+        final var bingoGame = new BingoGame(exampleGame);
 
-        var actualMarkedNumbers = bingoGame.getBoard(0).getMarkedNumbers();
+        final var actualMarkedNumbers = bingoGame.getBoard(0).getMarkedNumbers();
         assertArrayEquals(expectedMarkedNumbers, actualMarkedNumbers);
     }
 
     @Test
     void shouldDrawAndMarkNumbers() {
-        var bingoGame = new BingoGame(exampleGame);
-        var firstBoard = bingoGame.getBoard(0);
+        final var bingoGame = new BingoGame(exampleGame);
+        final var firstBoard = bingoGame.getBoard(0);
 
         bingoGame.drawNumber();
 
-        boolean numberIsMarked = firstBoard.getMarkedNumbers()[2][4];
+        final boolean numberIsMarked = firstBoard.getMarkedNumbers()[2][4];
         assertTrue(numberIsMarked);
     }
 
     @Test
     void thirdBoardShouldHaveBingoAfterDrawingTwelveNumbers() {
-        var expectedScore = 4512;
-        var numbersToDraw = new int[]{7, 4, 9, 5, 11, 17, 23, 2, 0, 14, 21, 24};
-        var bingoGame = new BingoGame(exampleGame);
-        var thirdBoard = bingoGame.getBoard(2);
+        final var expectedScore = 4512;
+        final var numbersToDraw = new int[]{7, 4, 9, 5, 11, 17, 23, 2, 0, 14, 21, 24};
+        final var bingoGame = new BingoGame(exampleGame);
+        final var thirdBoard = bingoGame.getBoard(2);
 
-        for (int numberToDraw : numbersToDraw) {
+        for (final int numberToDraw : numbersToDraw) {
             bingoGame.drawNumber();
         }
 
@@ -95,27 +94,27 @@ class BingoGameTest {
 
     @Test
     void shouldSolvePuzzleOne() {
-        var expectedScore = 58838;
-        var bingoGame = new BingoGame(puzzleGame);
+        final var expectedScore = 58838;
+        final var bingoGame = new BingoGame(puzzleGame);
 
         while (!bingoGame.isFinished()) {
             bingoGame.drawNumber();
         }
 
-        var winningBoard = bingoGame.getWinningBoard().get();
+        final var winningBoard = bingoGame.getWinningBoard().get();
         assertEquals(expectedScore, winningBoard.getScore());
         System.out.println("Day four part one solution: " + winningBoard.getScore());
     }
 
     @Test
     void shouldSolvePuzzleTwo() {
-        var expectedScore = 6256;
-        var bingoGame = new BingoGame(puzzleGame);
+        final var expectedScore = 6256;
+        final var bingoGame = new BingoGame(puzzleGame);
 
         while (numberOfPlayersWithBingo(bingoGame) < bingoGame.getNumberOfPlayers() - 1) {
             bingoGame.drawNumber();
             if (numberOfPlayersWithBingo(bingoGame) == bingoGame.getNumberOfPlayers() - 1) {
-                var losingBoard = findLosingBoard(bingoGame);
+                final var losingBoard = findLosingBoard(bingoGame);
                 while (!losingBoard.hasBingo()) {
                     bingoGame.drawNumber();
                 }
@@ -130,7 +129,7 @@ class BingoGameTest {
 
     @Test
     void shouldNotHaveWinningBoardWhenNoBoardsHaveBingo() {
-        var bingoGame = new BingoGame(exampleGame);
+        final var bingoGame = new BingoGame(exampleGame);
 
         while (numberOfPlayersWithBingo(bingoGame) == 0) {
             assertTrue(bingoGame.getWinningBoard().isEmpty());
@@ -142,29 +141,33 @@ class BingoGameTest {
 
     @Test
     void shouldWorkWithIrregularGrids() {
-        var expectedScore = 1044;
-        var bingoGame = new BingoGame(irregularGridsGame);
+        final var expectedScore = 1044;
+        final var bingoGame = new BingoGame(irregularGridsGame);
 
         while (!bingoGame.isFinished()) {
             bingoGame.drawNumber();
         }
 
-        var winningBoard = bingoGame.getWinningBoard().get();
+        final var winningBoard = bingoGame.getWinningBoard().get();
         assertEquals(expectedScore, winningBoard.getScore());
     }
 
-    private static int numberOfPlayersWithBingo(BingoGame bingoGame) {
+    private static int numberOfPlayersWithBingo(final BingoGame bingoGame) {
         int numberOfPlayersWithBingo = 0;
         for (int i = 0; i < bingoGame.getNumberOfPlayers(); i++) {
-            if (bingoGame.getBoard(i).hasBingo()) numberOfPlayersWithBingo++;
+            if (bingoGame.getBoard(i).hasBingo()) {
+                numberOfPlayersWithBingo++;
+            }
         }
 
         return numberOfPlayersWithBingo;
     }
 
-    private static BingoGame.BingoBoard findLosingBoard(BingoGame bingoGame) {
+    private static BingoGame.BingoBoard findLosingBoard(final BingoGame bingoGame) {
         for (int i = 0; i < bingoGame.getNumberOfPlayers(); i++) {
-            if (!bingoGame.getBoard(i).hasBingo()) return bingoGame.getBoard(i);
+            if (!bingoGame.getBoard(i).hasBingo()) {
+                return bingoGame.getBoard(i);
+            }
         }
 
         return null;
