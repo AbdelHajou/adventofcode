@@ -1,5 +1,7 @@
-package nl.abdel.aoc;
+package nl.abdel.aoc.twentyone;
 
+import nl.abdel.aoc.InputHelper;
+import nl.abdel.aoc.twentyone.VentScanner;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Order;
@@ -47,8 +49,8 @@ class VentScannerTest {
 
     @BeforeAll
     static void readInputFiles() throws IOException {
-        exampleInput = InputHelper.readFileToString("hydro_vents_example.txt");
-        puzzleInput = InputHelper.readFileToString("hydro_vents.txt");
+        exampleInput = InputHelper.readFileToString("2021/hydro_vents_example.txt");
+        puzzleInput = InputHelper.readFileToString("2021/hydro_vents.txt");
     }
 
     @BeforeEach

@@ -1,5 +1,8 @@
-package nl.abdel.aoc;
+package nl.abdel.aoc.twentyone;
 
+import nl.abdel.aoc.InputHelper;
+import nl.abdel.aoc.twentyone.AimingSubmarine;
+import nl.abdel.aoc.twentyone.Submarine;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Order;
@@ -23,7 +26,7 @@ class SubmarineTest {
         @BeforeEach
         void setUp() throws IOException {
             defaultSubmarine = new Submarine();
-            puzzleInput = InputHelper.readLines("submarine_commands.txt");
+            puzzleInput = InputHelper.readLines("2021/submarine_commands.txt");
         }
 
         @Test
@@ -110,7 +113,7 @@ class SubmarineTest {
         @BeforeEach
         void setUp() throws IOException {
             aimingSubmarine = new AimingSubmarine();
-            puzzleInput = InputHelper.readLines("submarine_commands.txt");
+            puzzleInput = InputHelper.readLines("2021/submarine_commands.txt");
         }
 
         @Test

@@ -1,4 +1,4 @@
-package nl.abdel.aoc;
+package nl.abdel.aoc.twentyone;
 
 import java.util.Comparator;
 import java.util.LinkedList;

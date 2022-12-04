@@ -1,5 +1,7 @@
-package nl.abdel.aoc;
+package nl.abdel.aoc.twentyone;
 
+import nl.abdel.aoc.InputHelper;
+import nl.abdel.aoc.twentyone.DigitDisplaySolver;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
@@ -40,7 +42,7 @@ class DigitDisplaySolverTest {
     @BeforeEach
     void setUp() throws IOException {
         digitDisplaySolver = new DigitDisplaySolver();
-        puzzleInput = InputHelper.readFileToString("digit_display_signals.txt");
+        puzzleInput = InputHelper.readFileToString("2021/digit_display_signals.txt");
     }
 
     @Test

@@ -1,5 +1,8 @@
-package nl.abdel.aoc;
+package nl.abdel.aoc.twentyone;
 
+import nl.abdel.aoc.InputHelper;
+import nl.abdel.aoc.twentyone.EngineType;
+import nl.abdel.aoc.twentyone.SubmarineFleet;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
@@ -21,7 +24,7 @@ class SubmarineFleetTest {
 
     @BeforeEach
     void setUp() throws IOException {
-        puzzleInput = InputHelper.readFileToString("crab_fleet.txt");
+        puzzleInput = InputHelper.readFileToString("2021/crab_fleet.txt");
         fleet = new SubmarineFleet();
     }
 

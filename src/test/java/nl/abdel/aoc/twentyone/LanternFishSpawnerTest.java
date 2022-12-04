@@ -1,5 +1,6 @@
-package nl.abdel.aoc;
+package nl.abdel.aoc.twentyone;
 
+import nl.abdel.aoc.twentyone.LanternFishSpawner;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;

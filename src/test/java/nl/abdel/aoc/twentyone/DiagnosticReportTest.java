@@ -1,5 +1,7 @@
-package nl.abdel.aoc;
+package nl.abdel.aoc.twentyone;
 
+import nl.abdel.aoc.InputHelper;
+import nl.abdel.aoc.twentyone.DiagnosticReport;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
@@ -17,8 +19,8 @@ class DiagnosticReportTest {
 
     @BeforeAll
     static void readInputFiles() throws IOException {
-        exampleReport = InputHelper.readFileToString("diagnostic_report_example.txt");
-        puzzleReport = InputHelper.readFileToString("diagnostic_report.txt");
+        exampleReport = InputHelper.readFileToString("2021/diagnostic_report_example.txt");
+        puzzleReport = InputHelper.readFileToString("2021/diagnostic_report.txt");
     }
 
     @Test

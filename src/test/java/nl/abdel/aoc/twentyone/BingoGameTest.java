@@ -1,5 +1,6 @@
-package nl.abdel.aoc;
+package nl.abdel.aoc.twentyone;
 
+import nl.abdel.aoc.InputHelper;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
@@ -22,9 +23,9 @@ class BingoGameTest {
 
     @BeforeAll
     static void readInputFiles() throws IOException {
-        exampleGame = InputHelper.readFileToString("bingo_game_example.txt");
-        irregularGridsGame = InputHelper.readFileToString("bingo_game_irregular.txt");
-        puzzleGame = InputHelper.readFileToString("bingo_game.txt");
+        exampleGame = InputHelper.readFileToString("2021/bingo_game_example.txt");
+        irregularGridsGame = InputHelper.readFileToString("2021/bingo_game_irregular.txt");
+        puzzleGame = InputHelper.readFileToString("2021/bingo_game.txt");
     }
 
     private static final int[][] FIRST_BOARD_NUMBERS = new int[][] {

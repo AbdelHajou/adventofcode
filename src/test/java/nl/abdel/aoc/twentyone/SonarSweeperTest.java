@@ -1,5 +1,7 @@
-package nl.abdel.aoc;
+package nl.abdel.aoc.twentyone;
 
+import nl.abdel.aoc.InputHelper;
+import nl.abdel.aoc.twentyone.SonarSweeper;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -20,7 +22,7 @@ class SonarSweeperTest {
 
     @BeforeAll
     static void setUp() throws IOException {
-        puzzleInput = InputHelper.readLinesToIntegers("depth_measurements.txt");
+        puzzleInput = InputHelper.readLinesToIntegers("2021/depth_measurements.txt");
     }
 
     @ParameterizedTest

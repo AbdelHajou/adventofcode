@@ -1,4 +1,4 @@
-package nl.abdel.aoc;
+package nl.abdel.aoc.twentyone;
 
 import java.util.Arrays;
 import java.util.LinkedList;
