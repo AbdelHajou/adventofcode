@@ -8,13 +8,14 @@ import java.util.stream.Collectors;
 
 public class BingoGame {
 
+    public static final String DOUBLE_LINE_SEPARATOR = System.lineSeparator() + System.lineSeparator();
     private LinkedList<Integer> luckyNumbers = new LinkedList<>();
     private final List<BingoBoard> boards = new LinkedList<>();
 
     private int nextLuckyNumberIndex;
 
     public BingoGame(String numbers) {
-        List<String> numberParts = Arrays.asList(numbers.split("\n\n"));
+        List<String> numberParts = Arrays.asList(numbers.split(DOUBLE_LINE_SEPARATOR));
         this.luckyNumbers = Arrays
                 .stream(numberParts.get(0).split(","))
                 .map(Integer::parseInt)
@@ -64,7 +65,7 @@ public class BingoGame {
         private int lastNumberCalled;
 
         public BingoBoard(String boardString) {
-            String[] rows = boardString.split("\n");
+            String[] rows = boardString.split(System.lineSeparator());
             for (String row : rows) {
                 String[] numberStrings = row.split(" ");
                 numbers.add(

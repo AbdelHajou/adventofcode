@@ -1,5 +1,6 @@
 package nl.abdel.aoc;
 
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
@@ -11,25 +12,13 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 @Order(3)
 class DiagnosticReportTest {
 
-    private final String exampleReport = """
-            00100
-            11110
-            10110
-            10111
-            10101
-            01111
-            00111
-            11100
-            10000
-            11001
-            00010
-            01010
-            """;
+    private static String exampleReport;
 
     private static String puzzleReport;
 
-    @BeforeEach
-    void setUp() throws IOException {
+    @BeforeAll
+    static void readInputFiles() throws IOException {
+        exampleReport = InputHelper.readFileToString("diagnostic_report_example.txt");
         puzzleReport = InputHelper.readFileToString("diagnostic_report.txt");
     }
 

@@ -1,5 +1,6 @@
 package nl.abdel.aoc;
 
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
@@ -12,18 +13,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 @Order(5)
 class VentScannerTest {
 
-    private static final String exampleInput = """
-            0,9 -> 5,9
-            8,0 -> 0,8
-            9,4 -> 3,4
-            2,2 -> 2,1
-            7,0 -> 7,4
-            6,4 -> 2,0
-            0,9 -> 2,9
-            3,4 -> 1,4
-            0,0 -> 8,8
-            5,5 -> 8,2
-            """;
+    private static String exampleInput;
 
     private static final int[][] firstExampleDiagram = new int[][]{
             {0, 0, 0, 0, 0, 0, 0, 1, 0, 0},
@@ -55,11 +45,15 @@ class VentScannerTest {
 
     private static String puzzleInput;
 
+    @BeforeAll
+    static void readInputFiles() throws IOException {
+        exampleInput = InputHelper.readFileToString("hydro_vents_example.txt");
+        puzzleInput = InputHelper.readFileToString("hydro_vents.txt");
+    }
+
     @BeforeEach
     void setUp() throws IOException {
         ventScanner = new VentScanner();
-        puzzleInput = InputHelper.readFileToString("hydro_vents.txt");
-
     }
 
     @Test

@@ -1,5 +1,6 @@
 package nl.abdel.aoc;
 
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
@@ -14,47 +15,16 @@ import static org.junit.jupiter.api.Assertions.fail;
 @Order(4)
 class BingoGameTest {
 
-    private static final String EXAMPLE = """
-            7,4,9,5,11,17,23,2,0,14,21,24,10,16,13,6,15,25,12,22,18,20,8,19,3,26,1
-                        
-            22 13 17 11  0
-             8  2 23  4 24
-            21  9 14 16  7
-             6 10  3 18  5
-             1 12 20 15 19
-                        
-             3 15  0  2 22
-             9 18 13 17  5
-            19  8  7 25 23
-            20 11 10 24  4
-            14 21 16 12  6
-                        
-            14 21 17 24  4
-            10 16 15  9 19
-            18  8 23 26 20
-            22 11 13  6  5
-             2  0 12  3  7
-            """;
+    private static String exampleGame;
 
-    private static final String EDGE_CASE_IRREGULAR_GRIDS = """
-            8,3,23,14,21,16,12,6
-                        
-            22  0
-             8  2 23  4
-            21 14  7
-             6 10  3 18  5
-                        
-             3 15  0  2 22
-             9 18 13 17  5
-            8  7 25 23
-            20 11 10
-            14 21 16 12  6
-            """;
+    private static String irregularGridsGame;
 
     private static String puzzleGame;
 
-    @BeforeEach
-    void setUp() throws IOException {
+    @BeforeAll
+    static void readInputFiles() throws IOException {
+        exampleGame = InputHelper.readFileToString("bingo_game_example.txt");
+        irregularGridsGame = InputHelper.readFileToString("bingo_game_irregular.txt");
         puzzleGame = InputHelper.readFileToString("bingo_game.txt");
     }
 
@@ -70,7 +40,7 @@ class BingoGameTest {
     void shouldCreateBingoBoards() {
         var expectedNumberOfBoards = 3;
 
-        var bingoGame = new BingoGame(EXAMPLE);
+        var bingoGame = new BingoGame(exampleGame);
 
         var actualNumberOfBoards = bingoGame.getNumberOfPlayers();
         assertEquals(expectedNumberOfBoards, actualNumberOfBoards);
@@ -80,7 +50,7 @@ class BingoGameTest {
     void shouldParseBoards() {
         var expectedNumbers = FIRST_BOARD_NUMBERS;
 
-        var bingoGame = new BingoGame(EXAMPLE);
+        var bingoGame = new BingoGame(exampleGame);
 
         var actualNumbers = bingoGame.getBoard(0).getNumbers();
         assertArrayEquals(expectedNumbers, actualNumbers);
@@ -90,7 +60,7 @@ class BingoGameTest {
     void shouldStartWithNoNumbersMarked() {
         var expectedMarkedNumbers = new boolean[5][5];
 
-        var bingoGame = new BingoGame(EXAMPLE);
+        var bingoGame = new BingoGame(exampleGame);
 
         var actualMarkedNumbers = bingoGame.getBoard(0).getMarkedNumbers();
         assertArrayEquals(expectedMarkedNumbers, actualMarkedNumbers);
@@ -98,7 +68,7 @@ class BingoGameTest {
 
     @Test
     void shouldDrawAndMarkNumbers() {
-        var bingoGame = new BingoGame(EXAMPLE);
+        var bingoGame = new BingoGame(exampleGame);
         var firstBoard = bingoGame.getBoard(0);
 
         bingoGame.drawNumber();
@@ -111,7 +81,7 @@ class BingoGameTest {
     void thirdBoardShouldHaveBingoAfterDrawingTwelveNumbers() {
         var expectedScore = 4512;
         var numbersToDraw = new int[]{7, 4, 9, 5, 11, 17, 23, 2, 0, 14, 21, 24};
-        var bingoGame = new BingoGame(EXAMPLE);
+        var bingoGame = new BingoGame(exampleGame);
         var thirdBoard = bingoGame.getBoard(2);
 
         for (int numberToDraw : numbersToDraw) {
@@ -160,7 +130,7 @@ class BingoGameTest {
 
     @Test
     void shouldNotHaveWinningBoardWhenNoBoardsHaveBingo() {
-        var bingoGame = new BingoGame(EXAMPLE);
+        var bingoGame = new BingoGame(exampleGame);
 
         while (numberOfPlayersWithBingo(bingoGame) == 0) {
             assertTrue(bingoGame.getWinningBoard().isEmpty());
@@ -173,7 +143,7 @@ class BingoGameTest {
     @Test
     void shouldWorkWithIrregularGrids() {
         var expectedScore = 1044;
-        var bingoGame = new BingoGame(EDGE_CASE_IRREGULAR_GRIDS);
+        var bingoGame = new BingoGame(irregularGridsGame);
 
         while (!bingoGame.isFinished()) {
             bingoGame.drawNumber();
